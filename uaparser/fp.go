@@ -1,5 +1,10 @@
 package uaparser
 
+import (
+	"bytes"
+	lru "github.com/hashicorp/golang-lru"
+)
+
 var fpDict = map[string]*Client{
 	// Windows, Chrome
 	"MozillaWindowsNTAppleWebKitKHTMLlikeGeckoChromeSafari":              {Os: &Os{"Windows", "", "", "", ""}, UserAgent: &UserAgent{"Chrome", "", "", ""}, Device: &Device{"Other", "", ""}},
@@ -62,21 +67,30 @@ var fpDict = map[string]*Client{
 }
 
 func (parser *Parser) GetFp(line string) string {
-	fp := make([]byte, 0)
+	var fp bytes.Buffer
 	for i, v := range line {
 		if v >= 'A' && v <= 'Z' || v >= 'a' && v <= 'z' {
-			fp = append(fp, line[i])
+			fp.WriteByte(line[i])
 		}
 	}
-	return string(fp)
+	return fp.String()
 }
+
+var cache, _ = lru.New(10000)
 
 func (parser *Parser) ParseFp(line string) *Client {
 	fp := parser.GetFp(line)
+	// level1 cache
 	if v, ok := fpDict[fp]; ok {
 		return v
 	}
+	// level2 cache
+	if val, isOk := cache.Get(fp); isOk {
+		return val.(*Client)
+	}
+	// lookup
 	client := parser.Parse(line)
+	cache.Add(fp, client)
 	//fmt.Printf("MISS %s: { %s, %s, %s } -> %s\n", fp, client.Os.Family, client.UserAgent.Family, client.Device.Family, line)
 	return client
 }
