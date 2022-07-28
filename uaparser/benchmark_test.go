@@ -46,25 +46,27 @@ func BenchmarkParserFp(b *testing.B) {
 
 func TestParserFp(t *testing.T) {
 	for _, ua := range uas {
-		if benchedParser.ParseFp(ua).Os.Family != benchedParser.Parse(ua).Os.Family {
+		client, _ := benchedParser.ParseFp(ua)
+		if client.Os.Family != benchedParser.Parse(ua).Os.Family {
 			t.Errorf("Fp lookup not equal to Regex lookup")
 		}
-		if benchedParser.ParseFp(ua).UserAgent.Family != benchedParser.Parse(ua).UserAgent.Family {
+		if client.UserAgent.Family != benchedParser.Parse(ua).UserAgent.Family {
 			t.Errorf("Fp lookup not equal to Regex lookup")
 		}
-		if benchedParser.ParseFp(ua).Device.Family != benchedParser.Parse(ua).Device.Family {
+		if client.Device.Family != benchedParser.Parse(ua).Device.Family {
 			t.Errorf("Fp lookup not equal to Regex lookup")
 		}
 	}
 
 	for _, ua := range top {
-		if benchedParser.ParseFp(ua).Os.Family != benchedParser.Parse(ua).Os.Family {
+		client, _ := benchedParser.ParseFp(ua)
+		if client.Os.Family != benchedParser.Parse(ua).Os.Family {
 			t.Errorf("Fp lookup not equal to Regex lookup")
 		}
-		if benchedParser.ParseFp(ua).UserAgent.Family != benchedParser.Parse(ua).UserAgent.Family {
+		if client.UserAgent.Family != benchedParser.Parse(ua).UserAgent.Family {
 			t.Errorf("Fp lookup not equal to Regex lookup")
 		}
-		if benchedParser.ParseFp(ua).Device.Family != benchedParser.Parse(ua).Device.Family {
+		if client.Device.Family != benchedParser.Parse(ua).Device.Family {
 			t.Errorf("Fp lookup not equal to Regex lookup")
 		}
 	}

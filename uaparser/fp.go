@@ -78,19 +78,19 @@ func (parser *Parser) GetFp(line string) string {
 
 var cache, _ = lru.New(10000)
 
-func (parser *Parser) ParseFp(line string) *Client {
+func (parser *Parser) ParseFp(line string) (*Client, string) {
 	fp := parser.GetFp(line)
 	// level1 cache
 	if v, ok := fpDict[fp]; ok {
-		return v
+		return v, fp
 	}
 	// level2 cache
 	if val, isOk := cache.Get(fp); isOk {
-		return val.(*Client)
+		return val.(*Client), fp
 	}
 	// lookup
 	client := parser.Parse(line)
 	cache.Add(fp, client)
 	//fmt.Printf("MISS %s: { %s, %s, %s } -> %s\n", fp, client.Os.Family, client.UserAgent.Family, client.Device.Family, line)
-	return client
+	return client, fp
 }
