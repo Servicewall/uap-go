@@ -3508,7 +3508,7 @@ device_parsers:
   - regex: 'Android \d+?(?:\.\d+|)(?:\.\d+|); ([^;]{1,100}?)(?: Build|\) AppleWebKit).{1,200}? Safari'
     brand_replacement: 'Generic_Android_Tablet'
     model_replacement: '$1'
-  - regex: 'Android \d+?(?:\.\d+|)(?:\.\d+|); ([^;]{1,100}?)(?: Build|\))'
+  - regex: 'Android \d+?(?:\.\d+|)(?:\.\d+|); ([^;]{1,100}?)(?: Build|;)'
     brand_replacement: 'Generic_Android'
     model_replacement: '$1'
   - regex: '(GoogleTV)'
