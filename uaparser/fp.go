@@ -2,6 +2,7 @@ package uaparser
 
 import (
 	"bytes"
+
 	lru "github.com/hashicorp/golang-lru"
 )
 
@@ -43,7 +44,7 @@ var fpDict = map[string]*Client{
 	"MozillaiPhoneCPUiPhoneOSlikeMacOSXAppleWebKitKHTMLlikeGeckoMobileE":                                                  {Os: &Os{"iOS", "", "", "", ""}, UserAgent: &UserAgent{"Mobile Safari UI/WKWebView", "", "", ""}, Device: &Device{"iPhone", "", ""}},
 	"MozillaiPhoneCPUiPhoneOSlikeMacOSXAppleWebKitKHTMLlikeGeckoVersionMobileESafari":                                     {Os: &Os{"iOS", "", "", "", ""}, UserAgent: &UserAgent{"Mobile Safari", "", "", ""}, Device: &Device{"iPhone", "", ""}},
 	"MozillaWindowsNTWOWAppleWebKitKHTMLlikeGeckoChromeSafariMicroMessengerNetTypeWIFIMiniProgramEnvWindowsWindowsWechat": {Os: &Os{"Windows", "", "", "", ""}, UserAgent: &UserAgent{"Chrome", "", "", ""}, Device: &Device{"Other", "", ""}},
-	"MozillaiPhoneCPUiPhoneOSlikeMacOSXAppleWebKitKHTMLlikeGeckoMobileEMicroMessengerxNetTypeWIFILanguagezhCN":            {Os: &Os{"iOS", "", "", "", ""}, UserAgent: &UserAgent{"Mobile Safari UI/WKWebView", "", "", ""}, Device: &Device{"iPhone", "", ""}},
+	"MozillaiPhoneCPUiPhoneOSlikeMacOSXAppleWebKitKHTMLlikeGeckoMobileEMicroMessengerxNetTypeWIFILanguagezhCN":            {Os: &Os{"iOS", "", "", "", ""}, UserAgent: &UserAgent{"WeiXin", "", "", ""}, Device: &Device{"iPhone", "", ""}},
 	"MozillaiPhoneCPUiPhoneOSlikeMacOSXAppleWebKitKHTMLlikeGeckoMobileEMicroMessengerxNetTypeGLanguagezhCN":               {Os: &Os{"iOS", "", "", "", ""}, UserAgent: &UserAgent{"Mobile Safari UI/WKWebView", "", "", ""}, Device: &Device{"iPhone", "", ""}},
 	// customer special
 	"MozillaiPhoneCPUiPhoneOSlikeMacOSXAppleWebKitKHTMLlikeGeckoMobileEszairApp": {Os: &Os{"iOS", "", "", "", ""}, UserAgent: &UserAgent{"Mobile Safari UI/WKWebView", "", "", ""}, Device: &Device{"iPhone", "", ""}},
