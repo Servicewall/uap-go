@@ -1,6 +1,6 @@
 module github.com/Servicewall/uap-go
 
-go 1.22.4
+go 1.22.1
 
 require (
 	github.com/hashicorp/golang-lru v1.0.2
