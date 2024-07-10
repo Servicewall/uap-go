@@ -2,8 +2,8 @@ package uaparser
 
 import (
 	"fmt"
+	regexp "github.com/wasilibs/go-re2"
 	"io/ioutil"
-	"regexp"
 	"sort"
 	"sync"
 	"sync/atomic"
