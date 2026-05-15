@@ -2,7 +2,7 @@ package uaparser
 
 import (
 	"fmt"
-	regexp "github.com/wasilibs/go-re2"
+	regexp "github.com/donge/coregex"
 	"io/ioutil"
 	"sort"
 	"sync"
