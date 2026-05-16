@@ -2,7 +2,7 @@ package uaparser
 
 import (
 	"fmt"
-	regexp "github.com/donge/coregex"
+	regexp "github.com/wasilibs/go-re2"
 	"io/ioutil"
 	"sort"
 	"sync"
@@ -360,9 +360,15 @@ func checkAndSort(parser *Parser) {
 }
 
 func compileRegex(flags, expr string) *regexp.Regexp {
+	var pattern string
 	if flags == "" {
-		return regexp.MustCompile(expr)
+		pattern = expr
 	} else {
-		return regexp.MustCompile(fmt.Sprintf("(?%s)%s", flags, expr))
+		pattern = fmt.Sprintf("(?%s)%s", flags, expr)
 	}
+	r, err := regexp.Compile(pattern)
+	if err != nil {
+		panic(err)
+	}
+	return r
 }
